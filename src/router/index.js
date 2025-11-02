@@ -1,46 +1,36 @@
-// src/router/index.js
-
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import DiscografiaView from '../views/DiscografiaView.vue'
-import NoticiasView from '../views/NoticiasView.vue'
-import BiografiaView from '../views/BiografiaView.vue' 
-// Creamos una vista de marcador de posición (placeholder) para Reseñas
-import ReviewsView from '../views/ReviewsView.vue' 
+import { createRouter, createWebHistory } from 'vue-router';
+// Volvemos a la ruta relativa (../views/) ya que el alias @/ no está funcionando en tu entorno.
+import HomeView from '../views/HomeView.vue';
+import DiscografiaView from '../views/DiscografiaView.vue';
+import HistoriaView from '../views/HistoriaView.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'Home',
     component: HomeView
   },
   {
-    // ¡CORREGIDO! Ahora coincide con /discografia del Menubar
-    path: '/discografia', 
-    name: 'discografia',
+    path: '/discografia',
+    name: 'Discografia',
     component: DiscografiaView
   },
   {
-    path: '/noticias',
-    name: 'noticias',
-    component: NoticiasView
+    path: '/historia',
+    name: 'Historia',
+    component: HistoriaView 
   },
+  // Usamos import dinámico con ruta relativa para Contacto también
   {
-    path: '/biografia',
-    name: 'biografia',
-    component: BiografiaView
-  },
-  {
-    // NUEVO: Agregamos una ruta para el submenú "Reseñas"
-    path: '/reviews', 
-    name: 'reviews',
-    component: ReviewsView // Usará el nuevo componente que crearemos
+    path: '/contacto',
+    name: 'Contacto',
+    component: () => import(/* webpackChunkName: "contacto" */ '../views/ContactoView.vue')
   }
-]
+];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;

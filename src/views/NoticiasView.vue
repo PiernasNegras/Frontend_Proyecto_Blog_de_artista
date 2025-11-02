@@ -53,10 +53,10 @@ export default {
 /* Esta clase apunta a todas las tarjetas de PrimeVue */
 .p-card {
     /* Fondo oscuro para la tarjeta */
-    background-color: #212121 !important; 
+    background-color: #000000!important; 
     
     /* El borde de la tarjeta lo hacemos gris oscuro o del color de acento */
-    border: 1px solid #ff9900 !important; 
+    border: 1px solid #CC0000 !important; 
     
     /* Aseguramos que el texto dentro de la tarjeta sea claro */
     color: #e0e0e0 !important;

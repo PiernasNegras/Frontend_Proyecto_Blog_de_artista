@@ -52,22 +52,22 @@ export default {
 
 h1 {
   text-align: center;
-  color: #ff9900; /* Color de acento */
+  color: #CC0000; /* Color de acento */
   margin-bottom: 30px;
 }
 
 /* --- CLAVE: FORZAR ESTILO OSCURO AL PANEL --- */
 .biografia-panel {
     /* Fondo oscuro para que contraste con el fondo general */
-    background-color: #1e1e1e !important; 
-    border: 1px solid #ff9900 !important;
+    background-color: #000000 !important; 
+    border: 1px solid #CC0000 !important;
 }
 
 /* Forzar el color del texto del encabezado del Panel */
 :deep(.p-panel-header) {
     background-color: #333333 !important; /* Fondo sutil para el header */
-    color: #ff9900 !important;
-    border-color: #ff9900 !important;
+    color: #CC0000 !important;
+    border-color: #CC0000 !important;
 }
 
 /* Forzar el color del texto del contenido del Panel */
@@ -99,7 +99,7 @@ h1 {
     max-width: 100%;
     height: auto;
     border-radius: 8px; /* Borde suave para la imagen */
-    border: 3px solid #ff9900;
+    border: 3px solid #CC0000;
 }
 
 /* Ajuste para pantallas pequeñas */

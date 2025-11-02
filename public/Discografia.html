@@ -1,0 +1,107 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+  /* Estilos base */
+  body { 
+    background-color: #1f2937; 
+    color: #f3f4f6; 
+    font-family: sans-serif; 
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  /* Estilo de tarjeta de álbum */
+  .card {
+    background-color: #374151;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    max-width: 400px;
+    width: 100%;
+    transition: transform 0.3s ease-in-out;
+  }
+  .card:hover {
+    transform: translateY(-5px);
+  }
+</style>
+
+<div id="app" class="w-full max-w-4xl">
+  <h1 class="text-4xl font-extrabold text-center mb-10 text-indigo-400">
+    Discografía de Prueba (Vue)
+  </h1>
+  <p class="text-center mb-6 text-lg text-gray-400">
+    <span class="font-bold text-red-400">MENSAJE PRINCIPAL:</span> {{ mensajePrincipal }}
+  </p>
+
+  <div class="flex flex-wrap justify-center gap-6">
+    <!-- Repetición para cada álbum -->
+    <div v-for="album in albums" :key="album.id" class="card">
+      <h2 class="text-2xl font-semibold mb-2 text-white">{{ album.titulo }}</h2>
+      <p class="text-indigo-300 mb-1">Año: {{ album.anio }}</p>
+      <p class="text-sm text-gray-300 mb-4">{{ album.descripcion }}</p>
+      
+      <!-- BOTÓN CLAVE: Su clase y texto cambian según el estado -->
+      <button 
+        class="w-full py-2 rounded-lg font-bold transition-colors shadow-lg"
+        :class="{'bg-indigo-600 hover:bg-indigo-700 text-white': !album.mostrandoDetalles, 'bg-red-600 hover:bg-red-700 text-white': album.mostrandoDetalles}"
+        @click="verDetalles(album.id)"
+      >
+        {{ album.mostrandoDetalles ? 'Ocultar Detalles' : 'Ver Detalles' }}
+      </button>
+
+      <!-- Detalles condicionales: Solo visibles si 'mostrandoDetalles' es true -->
+      <div v-if="album.mostrandoDetalles" class="mt-4 p-3 bg-gray-600/50 rounded-lg animate-fadeIn">
+        <p class="text-sm text-yellow-300 font-medium">Pistas: {{ album.pistas }}</p>
+        <p class="text-sm text-yellow-300 font-medium">Género: {{ album.genero }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Importamos las funciones necesarias de la variable global 'Vue'
+  const { createApp, ref } = Vue;
+
+  createApp({
+    setup() {
+      // Mensaje reactivo que usaremos en la parte superior
+      const mensajePrincipal = ref("Haga clic en 'Ver Detalles' en cualquier álbum.");
+
+      // Datos de los álbumes (reactivos)
+      const albums = ref([
+        { id: 1, titulo: 'El Color del Tiempo', anio: 2020, descripcion: 'Una mezcla de ritmos andinos y electrónicos.', pistas: 10, genero: 'Fusión', mostrandoDetalles: false },
+        { id: 2, titulo: 'La Noche Infinita', anio: 2022, descripcion: 'Rock alternativo con letras introspectivas.', pistas: 12, genero: 'Rock', mostrandoDetalles: false },
+        { id: 3, titulo: 'Sueños de Ciudad', anio: 2024, descripcion: 'Pop enérgico perfecto para el verano.', pistas: 8, genero: 'Pop', mostrandoDetalles: false },
+      ]);
+
+      // Función que se ejecuta al hacer clic en el botón
+      const verDetalles = (idAlbum) => {
+        // Encontramos el álbum por su ID
+        const album = albums.value.find(a => a.id === idAlbum);
+        
+        if (album) {
+          // 1. Alternar el estado de 'mostrandoDetalles' (de true a false o viceversa)
+          album.mostrandoDetalles = !album.mostrandoDetalles;
+
+          // 2. Actualizar el mensaje principal
+          if (album.mostrandoDetalles) {
+            mensajePrincipal.value = `Mostrando detalles de: ${album.titulo}`;
+          } else {
+            mensajePrincipal.value = "Haga clic en 'Ver Detalles' en cualquier álbum.";
+          }
+        }
+      };
+
+      // Devolvemos el estado y las funciones para que Vue las use en el HTML
+      return {
+        mensajePrincipal,
+        albums,
+        verDetalles
+      };
+    }
+  }).mount('#app'); // Montamos la aplicación en el div con id="app"
+</script>

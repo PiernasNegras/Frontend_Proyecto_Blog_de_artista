@@ -17,6 +17,6 @@ export default {
     color: #e0e0e0;
 }
 h1 {
-    color: #ff9900;
+    color: #CC0000;
 }
 </style>
