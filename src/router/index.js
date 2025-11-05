@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import DiscografiaView from '../views/DiscografiaView.vue';
 import HistoriaView from '../views/HistoriaView.vue';
+import BiografiaView from '@/views/BiografiaView.vue';
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     path: '/discografia',
     name: 'Discografia',
     component: DiscografiaView
+  },
+  {
+    path: '/biografia',
+    name: 'biografia',
+    component: BiografiaView
   },
   {
     path: '/historia',
