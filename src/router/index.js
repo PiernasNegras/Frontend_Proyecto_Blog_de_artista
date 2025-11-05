@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 // Volvemos a la ruta relativa (../views/) ya que el alias @/ no está funcionando en tu entorno.
 import HomeView from '../views/HomeView.vue';
 import DiscografiaView from '../views/DiscografiaView.vue';
-import HistoriaView from '../views/HistoriaView.vue';
 import BiografiaView from '@/views/BiografiaView.vue';
 
 const routes = [
@@ -20,11 +19,6 @@ const routes = [
     path: '/biografia',
     name: 'biografia',
     component: BiografiaView
-  },
-  {
-    path: '/historia',
-    name: 'Historia',
-    component: HistoriaView 
   },
   // Usamos import dinámico con ruta relativa para Contacto también
   {
