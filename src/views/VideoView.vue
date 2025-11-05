@@ -3,10 +3,10 @@
         <h1>🎬 Videografía de Almafuerte 🎬</h1>
 
         <input
-        v-model="filtro"
-        type="text"
-        placeholder="Buscar por título..."
-        class="buscador"
+            v-model="filtro"
+            type="text"
+            placeholder="Buscar por título..."
+            class="buscador"
         />
 
         <div v-if="loading" class="loading">Cargando videos...</div>
@@ -31,6 +31,11 @@
                                 @load="iframeCargado[video.id] = true"
                             ></iframe>
                         </div>
+                        <div class="ver-mas-wrapper">
+                            <router-link :to="`/videos/${video.id}`" class="ver-mas-boton">
+                                Ver más
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -44,26 +49,26 @@ import { getTodosLosVideos } from '../services/videoService';
 
 export default {
     name: 'VideoView',
-        setup() {
-            const videos = ref([]);
-            const loading = ref(true);
-            const error = ref(null);
-            const filtro = ref('');
-            const iframeCargado = ref({});
+    setup() {
+        const videos = ref([]);
+        const loading = ref(true);
+        const error = ref(null);
+        const filtro = ref('');
+        const iframeCargado = ref({});
 
-            onMounted(async () => {
-                try {
-                    const { data } = await getTodosLosVideos();
-                    videos.value = data;
-                } catch (err) {
-                    console.error('Error al obtener videos:', err);
-                    error.value = 'No se pudieron cargar los videos';
-                } finally {
-                    loading.value = false;
-                }
-            });
+        onMounted(async () => {
+            try {
+                const { data } = await getTodosLosVideos();
+                videos.value = data;
+            } catch (err) {
+                console.error('Error al obtener videos:', err);
+                error.value = 'No se pudieron cargar los videos';
+            } finally {
+                loading.value = false;
+            }
+        });
 
-            const formatYoutubeUrl = (url) => {
+        const formatYoutubeUrl = (url) => {
             if (url.includes('shorts/')) {
                 return url.replace('youtube.com/shorts/', 'www.youtube.com/embed/');
             }
@@ -171,6 +176,9 @@ h1 {
     padding: 20px;
     border-radius: 8px;
     border: 2px solid #CC0000;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .iframe-wrapper {
@@ -208,5 +216,25 @@ iframe {
     border-radius: 4px;
     z-index: 2;
     position: relative;
+}
+
+.ver-mas-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.ver-mas-boton {
+    padding: 8px 16px;
+    background-color: #CC0000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.ver-mas-boton:hover {
+    background-color: #a00000;
 }
 </style>

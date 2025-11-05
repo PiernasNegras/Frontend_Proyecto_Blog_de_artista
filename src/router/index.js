@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue';
 import DiscografiaView from '../views/DiscografiaView.vue';
 import BiografiaView from '@/views/BiografiaView.vue';
 import VideoView from '@/views/VideoView.vue';
+import VideoDetalleView from '@/views/VideoDetalleView.vue';
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/videos',
     name: 'video',
     component: VideoView
+  },
+  {
+    path: '/videos/:id',
+    name: 'VideoDetalle',
+    component: VideoDetalleView
   },
   // Usamos import dinámico con ruta relativa para Contacto también
   {
