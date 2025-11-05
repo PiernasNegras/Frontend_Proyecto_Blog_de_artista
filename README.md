@@ -16,23 +16,23 @@ Aplicación web dedicada a la historia, discografía y legado de Almafuerte, íc
 
 ```plaintext
 almafuerte-blog/
-├── public/                 # Archivos estáticos accesibles directamente (Discografia.html, index.html)
+├── public/                 # Archivos estáticos accesibles directamente (index.html, favicon, etc.)
 ├── src/                    # Código fuente principal de la aplicación Vue
 │   ├── assets/             # Imágenes y recursos visuales
-│   ├── components/         # Componentes reutilizables (ej. HelloWorld.vue)
-│   ├── views/              # Vistas de cada sección (Home, Historia, Discografía, etc.)
+│   ├── components/         # Componentes reutilizables (ej. VideoCard.vue, DiscoCard.vue)
+│   ├── views/              # Vistas principales del sitio (Home, Biografía, Discografía, Videografía, Contacto)
 │   ├── router/             # Configuración de rutas con Vue Router
 │   ├── services/           # Servicios para conexión con el backend
-│   │   ├── api.js
-│   │   ├── artistaService.js
-│   │   ├── discoService.js
-│   │   └── videoService.js
-│   ├── App.vue             # Componente raíz con layout y menú
+│   │   ├── api.js                  # Configuración base de Axios
+│   │   ├── artistaService.js      # Endpoints relacionados al artista
+│   │   ├── discoService.js        # Endpoints para obtener discos
+│   │   └── videoService.js        # Endpoints para obtener videos
+│   ├── App.vue             # Componente raíz con layout general y navegación
 │   └── main.js             # Punto de entrada de la aplicación
+├── .env                    # 🆕 Variable VUE_APP_API_BASE_URL para conexión al backend
 ├── .gitignore              # Archivos y carpetas ignoradas por Git
 ├── babel.config.js         # Configuración de Babel para compatibilidad JS
 ├── jsconfig.json           # Alias y opciones de compilador para el editor
-├── .env                   # 🆕 Variable VUE_APP_API_BASE_URL
 ├── package.json            # Dependencias, scripts y metadatos del proyecto
 ├── vue.config.js           # Configuración personalizada de Vue CLI
 └── README.md               # Documentación del proyecto
