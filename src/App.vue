@@ -29,9 +29,9 @@ export default {
           command: () => { this.$router.push('/'); } 
         },
         {
-          label: 'Historia',
+          label: 'Biografia',
           icon: 'pi pi-book',
-          command: () => { this.$router.push('/historia'); }
+          command: () => { this.$router.push('/biografia'); }
         },
         {
           label: 'Discografía',
