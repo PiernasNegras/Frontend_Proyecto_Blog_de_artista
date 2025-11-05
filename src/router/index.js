@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 // Volvemos a la ruta relativa (../views/) ya que el alias @/ no está funcionando en tu entorno.
 import HomeView from '../views/HomeView.vue';
-import DiscografiaView from '../views/DiscografiaView.vue';
+// Importo rutas para las vistas.
+import DiscografiaView from '@/views/DiscografiaView.vue';
 import BiografiaView from '@/views/BiografiaView.vue';
 import VideoView from '@/views/VideoView.vue';
 import VideoDetalleView from '@/views/VideoDetalleView.vue';

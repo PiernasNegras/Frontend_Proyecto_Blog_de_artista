@@ -17,17 +17,35 @@
                 ></iframe>
             </div>
 
+            <div class="navegacion-botones">
+                <router-link
+                    v-if="anteriorId !== null"
+                    :to="`/videos/${anteriorId}`"
+                    class="nav-boton"
+                >
+                    ← Anterior
+                </router-link>
+
+                <router-link
+                    v-if="siguienteId !== null"
+                    :to="`/videos/${siguienteId}`"
+                    class="nav-boton"
+                >
+                    Siguiente →
+                </router-link>
+            </div>
+
             <router-link to="/videos" class="volver-boton">
-                ← Volver a la videografía
+                Volver a la videografía
             </router-link>
         </div>
     </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { getVideoPorId } from '../services/videoService';
+import { getVideoPorId, getTodosLosVideos } from '../services/videoService';
 
 export default {
     name: 'VideoDetalleView',
@@ -36,18 +54,30 @@ export default {
         const video = ref(null);
         const loading = ref(true);
         const error = ref(null);
+        const todos = ref([]);
+        const anteriorId = ref(null);
+        const siguienteId = ref(null);
 
-        onMounted(async () => {
+        const cargarVideo = async (id) => {
+            loading.value = true;
+            error.value = null;
             try {
-                const { data } = await getVideoPorId(route.params.id);
+                const { data } = await getVideoPorId(id);
                 video.value = data;
+                calcularNavegacion(id);
             } catch (err) {
                 console.error('Error al obtener el video:', err);
                 error.value = 'No se pudo cargar el video';
             } finally {
                 loading.value = false;
             }
-        });
+        };
+
+        const calcularNavegacion = (idActual) => {
+            const index = todos.value.findIndex(v => v.id === parseInt(idActual));
+            anteriorId.value = index > 0 ? todos.value[index - 1].id : null;
+            siguienteId.value = index < todos.value.length - 1 ? todos.value[index + 1].id : null;
+        };
 
         const formatYoutubeUrl = (url) => {
             if (url.includes('shorts/')) {
@@ -57,10 +87,22 @@ export default {
             return match ? `https://www.youtube.com/embed/${match[1]}` : url;
         };
 
+        onMounted(async () => {
+            const { data } = await getTodosLosVideos();
+            todos.value = data;
+            cargarVideo(route.params.id);
+        });
+
+        watch(() => route.params.id, (nuevoId) => {
+            cargarVideo(nuevoId);
+        });
+
         return {
             video,
             loading,
             error,
+            anteriorId,
+            siguienteId,
             formatYoutubeUrl
         };
     }
@@ -119,6 +161,26 @@ iframe {
     width: 100%;
     height: 100%;
     border-radius: 4px;
+}
+
+.navegacion-botones {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.nav-boton {
+    padding: 10px 16px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.nav-boton:hover {
+    background-color: #555;
 }
 
 .volver-boton {
