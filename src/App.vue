@@ -39,6 +39,11 @@ export default {
           command: () => { this.$router.push('/discografia'); }
         },
         {
+          label: 'Videos',
+          icon: 'pi pi-youtube',
+          command: () => { this.$router.push('/videos'); }
+        },
+        {
           label: 'Contacto',
           icon: 'pi pi-envelope',
           command: () => { this.$router.push('/contacto'); }

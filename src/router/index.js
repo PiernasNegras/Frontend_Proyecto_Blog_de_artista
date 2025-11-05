@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import DiscografiaView from '../views/DiscografiaView.vue';
 import BiografiaView from '@/views/BiografiaView.vue';
+import VideoView from '@/views/VideoView.vue';
 
 const routes = [
   {
@@ -19,6 +20,11 @@ const routes = [
     path: '/biografia',
     name: 'biografia',
     component: BiografiaView
+  },
+  {
+    path: '/videos',
+    name: 'video',
+    component: VideoView
   },
   // Usamos import dinámico con ruta relativa para Contacto también
   {
