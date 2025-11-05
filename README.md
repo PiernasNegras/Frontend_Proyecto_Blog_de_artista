@@ -22,11 +22,17 @@ almafuerte-blog/
 │   ├── components/         # Componentes reutilizables (ej. HelloWorld.vue)
 │   ├── views/              # Vistas de cada sección (Home, Historia, Discografía, etc.)
 │   ├── router/             # Configuración de rutas con Vue Router
+│   ├── services/           # Servicios para conexión con el backend
+│   │   ├── api.js
+│   │   ├── artistaService.js
+│   │   ├── discoService.js
+│   │   └── videoService.js
 │   ├── App.vue             # Componente raíz con layout y menú
 │   └── main.js             # Punto de entrada de la aplicación
 ├── .gitignore              # Archivos y carpetas ignoradas por Git
 ├── babel.config.js         # Configuración de Babel para compatibilidad JS
 ├── jsconfig.json           # Alias y opciones de compilador para el editor
+├── .env                   # 🆕 Variable VUE_APP_API_BASE_URL
 ├── package.json            # Dependencias, scripts y metadatos del proyecto
 ├── vue.config.js           # Configuración personalizada de Vue CLI
 └── README.md               # Documentación del proyecto
