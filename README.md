@@ -29,7 +29,7 @@ almafuerte-blog/
 │   │   └── videoService.js        # Endpoints para obtener videos
 │   ├── App.vue             # Componente raíz con layout general y navegación
 │   └── main.js             # Punto de entrada de la aplicación
-├── .env                    # 🆕 Variable VUE_APP_API_BASE_URL para conexión al backend
+├── .env                    # Variable VUE_APP_API_BASE_URL para conexión al backend
 ├── .gitignore              # Archivos y carpetas ignoradas por Git
 ├── babel.config.js         # Configuración de Babel para compatibilidad JS
 ├── jsconfig.json           # Alias y opciones de compilador para el editor
