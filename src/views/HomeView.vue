@@ -7,14 +7,6 @@
                 "El rock del alma es la razón." — Noticias, Discografía y Biografía del metal criollo.
             </p>
 
-            <div class="latest-news">
-                <h2>Últimas Novedades</h2>
-                <p>
-                    La historia continúa...
-                    <router-link to="/noticias" class="link-noticias">Ver todas las noticias</router-link>
-                </p>
-            </div>
-
         </div>
 
         <!-- Estados de carga y error -->
