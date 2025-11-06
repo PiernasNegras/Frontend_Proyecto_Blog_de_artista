@@ -74,13 +74,16 @@ export default {
 
 /* Estilo para la nueva imagen */
 .main-logo {
-    max-width: 3000px;
-    height: auto;
+    max-width: 100%;
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
     display: block;
     margin: 0 auto 30px auto;
     border-bottom: 5px solid #CC0000;
     padding-bottom: 10px;
 }
+
 
 .hero-section h1 {
     font-size: 3rem;
