@@ -33,6 +33,11 @@ const routes = [
     name: 'VideoDetalle',
     component: VideoDetalleView
   },
+{
+    path: '/reproductor',
+    name: 'Reproductor',
+    component: () => import('@/views/ReproductorView.vue')
+},
   // Usamos import dinámico con ruta relativa para Contacto también
   {
     path: '/contacto',

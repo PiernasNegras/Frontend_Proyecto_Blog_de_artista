@@ -1,7 +1,8 @@
 <template>
     <div class="discografia-container">
         <h1>💿 Discografía de Ricardo Iorio</h1>
-
+        <CancionesDestacadas />
+        <h1>💿 Albunes </h1>
         <div v-if="loading" class="loading">Cargando discos...</div>
         <div v-else-if="error" class="error">{{ error }}</div>
 
@@ -26,9 +27,13 @@
 <script>
 import { ref, onMounted } from 'vue';
 import { getTodosLosDiscos } from '@/services/discoService';
+import CancionesDestacadas from '@/components/CancionesDestacadas.vue';
 
 export default {
     name: 'DiscografiaView',
+    components: {
+        CancionesDestacadas
+    },
     setup() {
         const discos = ref([]);
         const loading = ref(true);
